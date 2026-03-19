@@ -4,7 +4,8 @@ enum PlayerState {
 	idle,
 	walk,
 	jump,
-	duck
+	duck,
+	fall
 }
 
 @onready var animation: AnimatedSprite2D = $AnimatedSprite2D
@@ -32,6 +33,8 @@ func _physics_process(delta: float) -> void:
 			walk_state()
 		PlayerState.jump:
 			jump_state()
+		PlayerState.fall:
+			fall_state()
 		PlayerState.duck:
 			duck_state()
 
@@ -66,6 +69,10 @@ func exit_from_duck_state():
 	collision_shape.shape.height = 16
 	collision_shape.position.y = 0
 
+func go_to_fall_state():
+	status = PlayerState.fall
+	animation.play("fall")
+
 func idle_state():
 	move()
 	if velocity.x != 0:
@@ -86,19 +93,29 @@ func walk_state():
 	if Input.is_action_just_pressed("jump"):
 		go_to_jump_state()
 		return
+	if ! is_on_floor():
+		go_to_fall_state()
+		return
 
 func jump_state():
 	move()
-	if Input.is_action_just_pressed("jump") and jumps_count < max_jumps:
+	if Input.is_action_just_pressed("jump") and can_jump():
 		go_to_jump_state()
 		return
+	if velocity.y > 0:
+		go_to_fall_state()
 
+func fall_state():
+	move()
 	if is_on_floor():
 		exit_from_jump_state()
 		if velocity.x == 0:
 			go_to_idle_state()
 		else:
 			go_to_walk_state()
+		return
+	if Input.is_action_just_pressed("jump") and can_jump():
+		go_to_jump_state()
 		return
 
 func duck_state():
@@ -125,3 +142,6 @@ func move():
 		velocity.x = direction * SPEED
 	else:
 		velocity.x = move_toward(velocity.x, 0, SPEED)
+
+func can_jump() -> bool:
+	return jumps_count < max_jumps
