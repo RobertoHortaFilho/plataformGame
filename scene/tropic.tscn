@@ -10,6 +10,7 @@
 [ext_resource type="Texture2D" uid="uid://bsin71cdij8tb" path="res://sprites/Seasonal Tilesets/3 - Tropics/Background parts/2 - Waters_version_2.png" id="8_ei81g"]
 [ext_resource type="PackedScene" uid="uid://hfufu8kkq08v" path="res://entities/camera.tscn" id="9_34ia6"]
 [ext_resource type="PackedScene" uid="uid://bva32gbo8oj7d" path="res://entities/level_end.tscn" id="10_d18o5"]
+[ext_resource type="PackedScene" uid="uid://buatqm2mvohae" path="res://entities/skeleton.tscn" id="11_t8vtq"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_ytc0w"]
 animations = [{
@@ -29,7 +30,7 @@ animations = [{
 metadata/_edit_vertical_guides_ = [770.0]
 
 [node name="Player" parent="." unique_id=1344020605 instance=ExtResource("1_bmxgx")]
-position = Vector2(31, 148)
+position = Vector2(26, 167)
 
 [node name="ParallaxBackground" type="ParallaxBackground" parent="." unique_id=746550568]
 
@@ -102,3 +103,6 @@ tile_set = ExtResource("3_ry6l7")
 position = Vector2(783, 93)
 scale = Vector2(1, 8.22)
 next_level = "forest"
+
+[node name="Skeleton" parent="." unique_id=798268553 instance=ExtResource("11_t8vtq")]
+position = Vector2(98, 146)
