@@ -157,7 +157,6 @@ animations = [{
 size = Vector2(14, 26)
 
 [node name="Skeleton" type="CharacterBody2D" unique_id=798268553]
-z_index = 1
 collision_layer = 4
 script = ExtResource("1_yag7t")
 
@@ -167,14 +166,11 @@ shape = SubResource("CapsuleShape2D_yag7t")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=116480551]
 z_index = 1
-position = Vector2(0, 0.1)
 sprite_frames = SubResource("SpriteFrames_4qj8h")
 animation = &"attack"
 autoplay = "walk"
-frame = 2
-frame_progress = 0.24195312
 
-[node name="Hitbox" type="Area2D" parent="." unique_id=843433379 groups=["Enemies"]]
+[node name="Hitbox" type="Area2D" parent="." unique_id=843433379]
 collision_layer = 4
 collision_mask = 2
 
@@ -195,8 +191,5 @@ target_position = Vector2(0, 18)
 position = Vector2(0, 11)
 target_position = Vector2(121, 0)
 collision_mask = 2
-
-[node name="BoneStartPosition" type="Node2D" parent="." unique_id=892665758]
-position = Vector2(14, -3)
 
 [connection signal="animation_finished" from="AnimatedSprite2D" to="." method="_on_animated_sprite_2d_animation_finished"]

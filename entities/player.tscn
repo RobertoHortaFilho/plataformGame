@@ -179,6 +179,7 @@ script = ExtResource("1_merdl")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=255910329]
 z_index = 1
+position = Vector2(0, 0.1)
 sprite_frames = SubResource("SpriteFrames_i623q")
 animation = &"dead"
 frame = 1
@@ -190,7 +191,7 @@ shape = SubResource("CapsuleShape2D_u3f3p")
 
 [node name="Hitbox" type="Area2D" parent="." unique_id=1509094543]
 collision_layer = 2
-collision_mask = 4
+collision_mask = 20
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox" unique_id=1675112358]
 shape = SubResource("RectangleShape2D_6nm46")
@@ -201,4 +202,5 @@ wait_time = 1.5
 one_shot = true
 
 [connection signal="area_entered" from="Hitbox" to="." method="_on_hitbox_area_entered"]
+[connection signal="body_entered" from="Hitbox" to="." method="_on_hitbox_body_entered"]
 [connection signal="timeout" from="ReloadTimer" to="." method="_on_reload_timer_timeout"]
