@@ -12,6 +12,7 @@
 [ext_resource type="TileSet" uid="uid://bkmit5ohvq2a" path="res://tileset/decoration.tres" id="10_jxvlp"]
 [ext_resource type="PackedScene" uid="uid://bva32gbo8oj7d" path="res://entities/level_end.tscn" id="11_gwku7"]
 [ext_resource type="PackedScene" uid="uid://buatqm2mvohae" path="res://entities/skeleton.tscn" id="12_64es3"]
+[ext_resource type="PackedScene" uid="uid://ch7w3702vhjq2" path="res://entities/bone.tscn" id="13_kmspj"]
 
 [node name="Forest" type="Node2D" unique_id=1126229878]
 metadata/_edit_vertical_guides_ = [633.0]
@@ -97,3 +98,6 @@ position = Vector2(172, 140)
 
 [node name="Skeleton3" parent="." unique_id=1812102513 instance=ExtResource("12_64es3")]
 position = Vector2(323, 143)
+
+[node name="spinningBone" parent="." unique_id=1769492842 instance=ExtResource("13_kmspj")]
+position = Vector2(28, 135)
