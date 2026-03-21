@@ -7,6 +7,7 @@ enum PlayerState {
 	duck,
 	fall,
 	slide,
+	wall,
 	dead
 }
 
@@ -46,6 +47,8 @@ func _physics_process(delta: float) -> void:
 			duck_state(delta)
 		PlayerState.slide:
 			slide_state(delta)
+		PlayerState.wall:
+			wall_state(delta)	
 		PlayerState.dead:
 			dead_state(delta)
 
@@ -85,7 +88,11 @@ func go_to_slide_state():
 	animation.play("slide")
 	set_small_colider()
 
-func exit_to_slide_state():
+func go_to_wall_state():
+	status = PlayerState.wall
+	animation.play("wall")
+
+func exit_from_slide_state():
 	set_tall_colider()
 
 func go_to_dead_state():
@@ -157,6 +164,9 @@ func duck_state(_delta: float):
 		exit_from_duck_state()
 		return
 
+func wall_state(_delta: float):
+	pass
+
 func slide_state(delta: float):
 	velocity.x = move_toward(velocity.x, 0, slide_deceleration * delta)
 	if velocity.x == 0:
@@ -164,11 +174,11 @@ func slide_state(delta: float):
 		return
 	if Input.is_action_just_pressed("jump"):
 		go_to_jump_state()
-		exit_to_slide_state()
+		exit_from_slide_state()
 		return
 	if Input.is_action_just_released("duck"):
 		go_to_walk_state()
-		exit_to_slide_state()
+		exit_from_slide_state()
 		return
 
 func dead_state(_delta: float):
