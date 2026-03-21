@@ -197,7 +197,7 @@ func set_tall_colider():
 func _on_hitbox_area_entered(area: Area2D) -> void:
 	if velocity.y > 0:
 		#inimigo morre
-		area.get_parent().queue_free()
+		area.get_parent().go_to_death_state()
 		go_to_jump_state()
 		jumps_count -= 1
 		return
