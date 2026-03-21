@@ -130,6 +130,8 @@ animation = &"death"
 autoplay = "walk"
 
 [node name="Hitbox" type="Area2D" parent="." unique_id=843433379]
+collision_layer = 4
+collision_mask = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox" unique_id=2112615300]
 position = Vector2(1, 3)
@@ -139,7 +141,6 @@ debug_color = Color(0.975529, 0, 0.42224628, 0.41960785)
 [node name="frontCollision" type="RayCast2D" parent="." unique_id=397013410]
 position = Vector2(0, 13)
 target_position = Vector2(12, 0)
-collide_with_areas = true
 
 [node name="floorCollision" type="RayCast2D" parent="." unique_id=627638751]
 position = Vector2(9, 1)

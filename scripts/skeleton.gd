@@ -6,7 +6,6 @@ extends CharacterBody2D
 @onready var front_collision: RayCast2D = $frontCollision
 @onready var floor_collision: RayCast2D = $floorCollision
 
-
 enum enemy_state {
 	walk,
 	death
@@ -15,7 +14,6 @@ enum enemy_state {
 var state: enemy_state = enemy_state.walk
 const SPEED = 20.0
 var direction = 1
-
 
 
 func _physics_process(delta: float) -> void:
@@ -37,6 +35,7 @@ func walk_state(delta: float):
 
 func death_state():
 	pass
+	
 	
 
 func go_to_walk_state():

@@ -189,9 +189,16 @@ z_index = 1
 shape = SubResource("CapsuleShape2D_u3f3p")
 
 [node name="Hitbox" type="Area2D" parent="." unique_id=1509094543]
+collision_layer = 2
+collision_mask = 4
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox" unique_id=1675112358]
 shape = SubResource("RectangleShape2D_6nm46")
 debug_color = Color(0.96974534, 0, 0.46247536, 0.41960785)
 
+[node name="ReloadTimer" type="Timer" parent="." unique_id=1110448214]
+wait_time = 1.5
+one_shot = true
+
 [connection signal="area_entered" from="Hitbox" to="." method="_on_hitbox_area_entered"]
+[connection signal="timeout" from="ReloadTimer" to="." method="_on_reload_timer_timeout"]
