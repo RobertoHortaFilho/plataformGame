@@ -11,8 +11,33 @@
 [ext_resource type="PackedScene" uid="uid://hfufu8kkq08v" path="res://entities/camera.tscn" id="9_jo4av"]
 [ext_resource type="TileSet" uid="uid://bkmit5ohvq2a" path="res://tileset/decoration.tres" id="10_jxvlp"]
 [ext_resource type="PackedScene" uid="uid://bva32gbo8oj7d" path="res://entities/level_end.tscn" id="11_gwku7"]
+[ext_resource type="Texture2D" uid="uid://d017buflopy2l" path="res://sprites/Seasonal Tilesets/5 - Misc. universal tiles/Lava_frames (16 x 32).png" id="11_ja8kk"]
 [ext_resource type="PackedScene" uid="uid://buatqm2mvohae" path="res://entities/skeleton.tscn" id="12_64es3"]
-[ext_resource type="PackedScene" uid="uid://ch7w3702vhjq2" path="res://entities/bone.tscn" id="13_kmspj"]
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_boiax"]
+texture = ExtResource("11_ja8kk")
+0:0/animation_speed = 5.0
+0:0/animation_frame_0/duration = 1.0
+0:0/animation_frame_1/duration = 1.0
+0:0/animation_frame_2/duration = 1.0
+0:0/animation_frame_3/duration = 1.0
+0:0/0 = 0
+0:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, 0, 8, 0, 8, 8, -8, 8)
+0:1/animation_speed = 5.0
+0:1/animation_frame_0/duration = 1.0
+0:1/animation_frame_1/duration = 1.0
+0:1/animation_frame_2/duration = 1.0
+0:1/animation_frame_3/duration = 1.0
+0:1/0 = 0
+0:1/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+
+[sub_resource type="TileSet" id="TileSet_0xhum"]
+physics_layer_0/collision_layer = 16
+physics_layer_0/collision_mask = 2
+sources/0 = SubResource("TileSetAtlasSource_boiax")
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_kmspj"]
+size = Vector2(11, 209)
 
 [node name="Forest" type="Node2D" unique_id=1126229878]
 metadata/_edit_vertical_guides_ = [633.0]
@@ -72,6 +97,7 @@ texture = ExtResource("8_kmspj")
 centered = false
 
 [node name="Camera" parent="." unique_id=1769430168 instance=ExtResource("9_jo4av")]
+position = Vector2(28, 180)
 limit_top = 0
 limit_right = 633
 
@@ -82,16 +108,19 @@ tile_map_data = PackedByteArray("AAAAAAwAAQACAAMAAAABAAwAAQACAAMAAAACAAwAAQACAAM
 tile_set = ExtResource("2_gbfvw")
 
 [node name="Decoration" type="TileMapLayer" parent="Tiles" unique_id=1844255297]
-tile_map_data = PackedByteArray("AAAlAAsAAAADAAUAAAAcAAsAAAAHAAUAAAAdAAsAAAAHAAUAAAAeAAsAAAAHAAUAAAAbAAsAAAAGAAUAAAAaAAsAAAAFAAUAAAANAAsAAAABAAUAAAADAAsAAQACAAAAAAAVAAkAAAABAAUAAAAfAAkAAgAAAAAAAAARAAoAAAAFAAEAAAAQAAoAAAAFAAEAAAAJAAgAAAAJAAEAAAALAAkAAAABAAUAAAAGAAsAAAABAAUAAAAMAAkAAQACAAAAAAA=")
+tile_map_data = PackedByteArray("AAAlAAsAAAADAAUAAAAcAAsAAAAHAAUAAAAdAAsAAAAHAAUAAAAeAAsAAAAHAAUAAAAbAAsAAAAGAAUAAAAaAAsAAAAFAAUAAAADAAsAAQACAAAAAAAVAAkAAAABAAUAAAAfAAkAAgAAAAAAAAAJAAgAAAAJAAEAAAALAAkAAAABAAUAAAAGAAsAAAABAAUAAAAMAAkAAQACAAAAAAAaAAoAAAAFAAEAAAAEAAoAAAAFAAEAAAA=")
 tile_set = ExtResource("10_jxvlp")
+
+[node name="Lava" type="TileMapLayer" parent="Tiles" unique_id=278646818 groups=["LethalArea"]]
+z_index = 5
+position = Vector2(-1, 0)
+tile_map_data = PackedByteArray("AAANAAoAAAAAAAAAAAANAAsAAAAAAAEAAAAOAAoAAAAAAAAAAAAOAAsAAAAAAAEAAAAPAAoAAAAAAAAAAAAPAAsAAAAAAAEAAAAQAAoAAAAAAAAAAAAQAAsAAAAAAAEAAAARAAoAAAAAAAAAAAARAAsAAAAAAAEAAAASAAoAAAAAAAAAAAASAAsAAAAAAAEAAAAMAAoAAAAAAAAAAAAMAAsAAAAAAAEAAAATAAoAAAAAAAAAAAATAAsAAAAAAAEAAAA=")
+tile_set = SubResource("TileSet_0xhum")
 
 [node name="LevelEnd" parent="." unique_id=1936906855 instance=ExtResource("11_gwku7")]
 position = Vector2(647, 101.99999)
 scale = Vector2(1, 10.120001)
 next_level = "tropic"
-
-[node name="Skeleton" parent="." unique_id=798268553 instance=ExtResource("12_64es3")]
-position = Vector2(246, 169)
 
 [node name="Skeleton2" parent="." unique_id=447173489 instance=ExtResource("12_64es3")]
 position = Vector2(172, 140)
@@ -99,5 +128,17 @@ position = Vector2(172, 140)
 [node name="Skeleton3" parent="." unique_id=1812102513 instance=ExtResource("12_64es3")]
 position = Vector2(323, 143)
 
-[node name="spinningBone" parent="." unique_id=1769492842 instance=ExtResource("13_kmspj")]
-position = Vector2(28, 135)
+[node name="Limit" type="StaticBody2D" parent="." unique_id=99823986]
+collision_mask = 6
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Limit" unique_id=560341527]
+position = Vector2(-4.5, 103.5)
+shape = SubResource("RectangleShape2D_kmspj")
+
+[node name="Limit2" type="StaticBody2D" parent="." unique_id=1631328156]
+position = Vector2(651, 0)
+collision_mask = 6
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Limit2" unique_id=1152304650]
+position = Vector2(-4.5, 103.5)
+shape = SubResource("RectangleShape2D_kmspj")
