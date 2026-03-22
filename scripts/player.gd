@@ -161,7 +161,7 @@ func fall_state(delta: float):
 	if Input.is_action_just_pressed("jump") and can_jump():
 		go_to_jump_state()
 		return
-	if left_wall_detector.is_colliding() or right_wall_detector.is_colliding():
+	if (left_wall_detector.is_colliding() or right_wall_detector.is_colliding()) && is_on_wall():
 		go_to_wall_state()
 		return
 
