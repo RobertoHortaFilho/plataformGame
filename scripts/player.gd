@@ -8,6 +8,7 @@ enum PlayerState {
 	fall,
 	slide,
 	wall,
+	swimming,
 	dead
 }
 
@@ -23,6 +24,8 @@ enum PlayerState {
 @export var deceleration = 200
 @export var slide_deceleration = 50
 @export var wall_acceleration = 40
+@export var water_acceleration = 150
+@export var water_speed = 100
 var wall_jump_velocity = 200
 const JUMP_VELOCITY = -200.0
 @export var max_jumps = 2
@@ -50,7 +53,9 @@ func _physics_process(delta: float) -> void:
 		PlayerState.slide:
 			slide_state(delta)
 		PlayerState.wall:
-			wall_state(delta)	
+			wall_state(delta)
+		PlayerState.swimming:
+			swimming_state(delta)
 		PlayerState.dead:
 			dead_state(delta)
 
@@ -108,7 +113,10 @@ func go_to_dead_state():
 	velocity = Vector2.ZERO
 	reload_timer.start()
 
-
+func go_to_swimming_state():
+	status = PlayerState.swimming
+	animation.play("swimming")
+	velocity.y = min(velocity.y, 150)
 
 func idle_state(delta: float):
 	apply_gravity(delta)
@@ -212,6 +220,19 @@ func slide_state(delta: float):
 		exit_from_slide_state()
 		return
 
+func swimming_state(delta: float):
+	update_direction()
+	if direction:
+		velocity.x = move_toward(velocity.x, water_speed * direction, water_acceleration * delta)
+	else:
+		velocity.x = move_toward(velocity.x, 0, water_acceleration * delta)
+	
+	var vertical_direction = Input.get_axis("jump", "duck")
+	if vertical_direction:
+		velocity.y = move_toward(velocity.y, water_speed * vertical_direction, water_acceleration * delta)
+	else:
+		velocity.y = move_toward(velocity.y, 0, water_acceleration * delta)
+
 func dead_state(delta: float):
 	apply_gravity(delta)
 
@@ -260,6 +281,17 @@ func _on_hitbox_area_entered(area: Area2D) -> void:
 func _on_hitbox_body_entered(body: Node2D) -> void:
 	if body.is_in_group("LethalArea"):
 		go_to_dead_state()
+		return
+	elif body.is_in_group("Water"):
+		go_to_swimming_state()
+		return
+
+
+func _on_hitbox_body_exited(body: Node2D) -> void:
+	if body.is_in_group("Water"):
+		go_to_jump_state()
+		jumps_count = 0
+		return
 
 func hit_enemy(area):
 	if velocity.y > 0:
