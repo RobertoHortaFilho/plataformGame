@@ -12,6 +12,8 @@
 [ext_resource type="PackedScene" uid="uid://hfufu8kkq08v" path="res://entities/camera.tscn" id="9_34ia6"]
 [ext_resource type="PackedScene" uid="uid://bva32gbo8oj7d" path="res://entities/level_end.tscn" id="10_d18o5"]
 [ext_resource type="TileSet" uid="uid://ciacpx0xea67q" path="res://tileset/underwater.tres" id="11_ei81g"]
+[ext_resource type="PackedScene" uid="uid://bgwuweblawk5k" path="res://entities/moving_plataform.tscn" id="13_ytc0w"]
+[ext_resource type="PackedScene" uid="uid://bgtoahwvkeq0c" path="res://entities/broken_block.tscn" id="14_xflqb"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_ytc0w"]
 animations = [{
@@ -121,3 +123,21 @@ tile_set = ExtResource("11_ei81g")
 position = Vector2(783, 93)
 scale = Vector2(1, 8.22)
 next_level = "forest"
+
+[node name="MovingPlataform" parent="." unique_id=2128168765 instance=ExtResource("13_ytc0w")]
+position = Vector2(48, 161)
+speed = 3
+
+[node name="Target" parent="MovingPlataform" index="1" unique_id=342897197]
+position = Vector2(93, -72)
+
+[node name="BrokenBlock" parent="." unique_id=761961357 instance=ExtResource("14_xflqb")]
+position = Vector2(101, 144)
+
+[node name="BrokenBlock2" parent="." unique_id=1608673160 instance=ExtResource("14_xflqb")]
+position = Vector2(80, 121)
+
+[node name="BrokenBlock3" parent="." unique_id=1180867900 instance=ExtResource("14_xflqb")]
+position = Vector2(101, 89)
+
+[editable path="MovingPlataform"]
