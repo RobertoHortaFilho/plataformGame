@@ -15,6 +15,10 @@ run/main_scene="uid://dspaxfswdkm8h"
 config/features=PackedStringArray("4.6", "Mobile")
 config/icon="res://icon.svg"
 
+[autoload]
+
+SignalManager="*uid://ckjckrhm8lfqw"
+
 [display]
 
 window/size/viewport_width=288

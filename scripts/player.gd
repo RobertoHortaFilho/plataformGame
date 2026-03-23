@@ -14,8 +14,6 @@ enum PlayerState {
 	dead
 }
 
-signal update_hud_coin
-
 @onready var animation: AnimatedSprite2D = $AnimatedSprite2D
 @onready var collision_shape: CollisionShape2D = $CollisionShape2D
 @onready var reload_timer: Timer = $ReloadTimer
@@ -321,4 +319,4 @@ func on_pick_up_collect(body: Node2D):
 	coins += 1
 	print("coins", coins)
 	body.queue_free()
-	update_hud_coin.emit()
+	SignalManager.player_collect_x_coins.emit(1)
