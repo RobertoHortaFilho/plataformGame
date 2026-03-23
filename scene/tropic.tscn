@@ -14,6 +14,8 @@
 [ext_resource type="TileSet" uid="uid://ciacpx0xea67q" path="res://tileset/underwater.tres" id="11_ei81g"]
 [ext_resource type="PackedScene" uid="uid://bgwuweblawk5k" path="res://entities/moving_plataform.tscn" id="13_ytc0w"]
 [ext_resource type="PackedScene" uid="uid://bgtoahwvkeq0c" path="res://entities/broken_block.tscn" id="14_xflqb"]
+[ext_resource type="PackedScene" uid="uid://bji4lioc6y7h3" path="res://entities/coin.tscn" id="15_xnncp"]
+[ext_resource type="PackedScene" uid="uid://bs7abcv1ncfga" path="res://hud/player_hud.tscn" id="16_mjtd1"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_ytc0w"]
 animations = [{
@@ -31,6 +33,9 @@ animations = [{
 
 [node name="Tropic" type="Node2D" unique_id=265302372]
 metadata/_edit_vertical_guides_ = [770.0]
+
+[node name="PlayerHud" parent="." unique_id=1105530459 node_paths=PackedStringArray("player") instance=ExtResource("16_mjtd1")]
+player = NodePath("../Player")
 
 [node name="Player" parent="." unique_id=1344020605 instance=ExtResource("1_bmxgx")]
 position = Vector2(151, 157)
@@ -139,5 +144,14 @@ position = Vector2(80, 121)
 
 [node name="BrokenBlock3" parent="." unique_id=1180867900 instance=ExtResource("14_xflqb")]
 position = Vector2(101, 89)
+
+[node name="Coin" parent="." unique_id=178743877 instance=ExtResource("15_xnncp")]
+position = Vector2(101, 124)
+
+[node name="Coin2" parent="." unique_id=1334892371 instance=ExtResource("15_xnncp")]
+position = Vector2(265, 141)
+
+[node name="Coin3" parent="." unique_id=752001994 instance=ExtResource("15_xnncp")]
+position = Vector2(160, 267)
 
 [editable path="MovingPlataform"]
