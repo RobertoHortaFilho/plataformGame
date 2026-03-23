@@ -28,6 +28,8 @@ Player=""
 Enemies=""
 LethalArea=""
 Water=""
+Pickup=""
+Imapickup=""
 
 [input]
 
@@ -65,6 +67,7 @@ duck={
 2d_physics/layer_4="level_end"
 2d_physics/layer_5="lethal_area"
 2d_physics/layer_6="under_water"
+2d_physics/layer_7="pickups"
 
 [physics]
 

@@ -1,5 +1,7 @@
 extends CharacterBody2D
 
+class_name Player
+
 enum PlayerState {
 	idle,
 	walk,
@@ -11,6 +13,8 @@ enum PlayerState {
 	swimming,
 	dead
 }
+
+signal update_hud_coin
 
 @onready var animation: AnimatedSprite2D = $AnimatedSprite2D
 @onready var collision_shape: CollisionShape2D = $CollisionShape2D
@@ -31,6 +35,8 @@ const JUMP_VELOCITY = -200.0
 @export var max_jumps = 2
 var jumps_count = 0
 var direction = 0
+
+var coins = 0
 
 var status: PlayerState
 
@@ -277,6 +283,7 @@ func _on_hitbox_area_entered(area: Area2D) -> void:
 		hit_enemy(area)
 	elif area.is_in_group("LethalArea"):
 		hit_lethal_area()
+	
 
 func _on_hitbox_body_entered(body: Node2D) -> void:
 	if body.is_in_group("LethalArea"):
@@ -285,6 +292,8 @@ func _on_hitbox_body_entered(body: Node2D) -> void:
 	elif body.is_in_group("Water"):
 		go_to_swimming_state()
 		return
+	elif body.is_in_group("Pickup"):
+		on_pick_up_collect(body)
 
 
 func _on_hitbox_body_exited(body: Node2D) -> void:
@@ -307,3 +316,9 @@ func hit_lethal_area():
 
 func _on_reload_timer_timeout() -> void:
 	get_tree().reload_current_scene()
+
+func on_pick_up_collect(body: Node2D):
+	coins += 1
+	print("coins", coins)
+	body.queue_free()
+	update_hud_coin.emit()

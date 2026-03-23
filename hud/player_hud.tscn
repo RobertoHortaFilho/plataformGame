@@ -1,0 +1,61 @@
+[gd_scene format=3 uid="uid://bs7abcv1ncfga"]
+
+[ext_resource type="Script" uid="uid://cajfexq2kb7vh" path="res://scripts/player_hud.gd" id="1_uo4yc"]
+[ext_resource type="Texture2D" uid="uid://c01t257q2remq" path="res://sprites/Common Pick-ups/Coin (16 x 16).png" id="1_yirs3"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_yirs3"]
+font_size = 11
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_uo4yc"]
+atlas = ExtResource("1_yirs3")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_msh7k"]
+atlas = ExtResource("1_yirs3")
+region = Rect2(16, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_r003q"]
+atlas = ExtResource("1_yirs3")
+region = Rect2(32, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0la6b"]
+atlas = ExtResource("1_yirs3")
+region = Rect2(48, 0, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_b2ouq"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_uo4yc")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_msh7k")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_r003q")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0la6b")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[node name="PlayerHud" type="CanvasLayer" unique_id=1105530459]
+script = ExtResource("1_uo4yc")
+
+[node name="Label" type="Label" parent="." unique_id=1830209632]
+offset_left = 17.0
+offset_top = 4.0
+offset_right = 110.0
+offset_bottom = 20.0
+text = "03"
+label_settings = SubResource("LabelSettings_yirs3")
+vertical_alignment = 1
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1186890334]
+position = Vector2(12, 11.999999)
+scale = Vector2(0.42746606, 0.42746606)
+sprite_frames = SubResource("SpriteFrames_b2ouq")
+autoplay = "default"
