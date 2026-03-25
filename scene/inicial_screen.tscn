@@ -1,0 +1,169 @@
+[gd_scene format=3 uid="uid://bnsx5tjruio0h"]
+
+[ext_resource type="StyleBox" uid="uid://d3c5wifyn04a7" path="res://styles/button_flat_hover.tres" id="1_fbp53"]
+[ext_resource type="Texture2D" uid="uid://nxo2m402nwh2" path="res://sprites/Seasonal Tilesets/3 - Tropics/Background parts/5 - Sky_color.png" id="1_swhso"]
+[ext_resource type="Texture2D" uid="uid://db0bevfxdlmp8" path="res://sprites/Seasonal Tilesets/3 - Tropics/Background parts/4 - Background_clouds.png" id="2_6demr"]
+[ext_resource type="StyleBox" uid="uid://dhp8hun8au517" path="res://styles/button_flat_normal.tres" id="2_q1fvd"]
+[ext_resource type="Texture2D" uid="uid://cithxo3b3fcvx" path="res://sprites/Seasonal Tilesets/3 - Tropics/Background parts/3 - Floating_clouds.png" id="3_6demr"]
+[ext_resource type="Texture2D" uid="uid://dsdqsqpogyiau" path="res://sprites/Seasonal Tilesets/3 - Tropics/Background parts/1 - Waters_version_1.png" id="4_dh0d1"]
+[ext_resource type="Texture2D" uid="uid://bsin71cdij8tb" path="res://sprites/Seasonal Tilesets/3 - Tropics/Background parts/2 - Waters_version_2.png" id="5_tyhya"]
+[ext_resource type="Texture2D" uid="uid://cvuhfmovve0u1" path="res://sprites/Seasonal Tilesets/5 - Misc. universal tiles/distant-water.png" id="6_fbp53"]
+[ext_resource type="Script" uid="uid://bq0tiq7bu5jw1" path="res://scripts/camera__menu.gd" id="7_tyhya"]
+[ext_resource type="Script" uid="uid://crqy0p1qqd3wa" path="res://scripts/menu_controller.gd" id="10_3sjdf"]
+[ext_resource type="PackedScene" uid="uid://hjflo1ywd3s3" path="res://scene/scene_transition.tscn" id="11_axcdg"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_q6hyb"]
+font_size = 25
+shadow_color = Color(0, 0, 0, 1)
+shadow_offset = Vector2(1.5, 1)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_q1fvd"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("4_dh0d1")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_tyhya")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[node name="InicialScreen" type="Node2D" unique_id=2033843725]
+
+[node name="FirstScreen" type="Node" parent="." unique_id=938125184]
+
+[node name="CanvasLayer" type="CanvasLayer" parent="FirstScreen" unique_id=721222775]
+
+[node name="Control" type="Control" parent="FirstScreen/CanvasLayer" unique_id=2084210021]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Title" type="Label" parent="FirstScreen/CanvasLayer/Control" unique_id=386608189]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -63.0
+offset_top = 20.0
+offset_right = 63.0
+offset_bottom = 55.0
+grow_horizontal = 2
+text = "Pengu Life"
+label_settings = SubResource("LabelSettings_q6hyb")
+
+[node name="ButtonStart" type="Button" parent="FirstScreen/CanvasLayer/Control" unique_id=118054521]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -31.0
+offset_top = -16.0
+offset_right = 31.0
+offset_bottom = 15.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/normal = ExtResource("2_q1fvd")
+theme_override_styles/pressed = ExtResource("2_q1fvd")
+theme_override_styles/hover = ExtResource("1_fbp53")
+text = "Start"
+
+[node name="ButtonOptions" type="Button" parent="FirstScreen/CanvasLayer/Control" unique_id=1487248414]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -23.0
+offset_top = 36.0
+offset_right = 23.0
+offset_bottom = 67.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/normal = ExtResource("2_q1fvd")
+theme_override_styles/pressed = ExtResource("2_q1fvd")
+theme_override_styles/hover = ExtResource("1_fbp53")
+text = "Options"
+
+[node name="ParallaxBackground" type="ParallaxBackground" parent="." unique_id=1394031344]
+
+[node name="5-sky" type="ParallaxLayer" parent="ParallaxBackground" unique_id=1684483184]
+motion_scale = Vector2(0, 0)
+motion_mirroring = Vector2(288, 0)
+
+[node name="Sprite2D" type="Sprite2D" parent="ParallaxBackground/5-sky" unique_id=1346197410]
+texture_repeat = 2
+texture = ExtResource("1_swhso")
+centered = false
+region_enabled = true
+region_rect = Rect2(0, 0, 576, 208)
+
+[node name="4-clouds" type="ParallaxLayer" parent="ParallaxBackground" unique_id=195098134]
+motion_scale = Vector2(0.2, 0.15)
+motion_mirroring = Vector2(288, 0)
+
+[node name="Sprite2D" type="Sprite2D" parent="ParallaxBackground/4-clouds" unique_id=1671611792]
+texture_repeat = 2
+texture = ExtResource("2_6demr")
+centered = false
+region_enabled = true
+region_rect = Rect2(0, 0, 576, 208)
+
+[node name="3-floating-clouds" type="ParallaxLayer" parent="ParallaxBackground" unique_id=813772237]
+motion_scale = Vector2(0.4, 0.3)
+motion_mirroring = Vector2(288, 0)
+
+[node name="Sprite2D" type="Sprite2D" parent="ParallaxBackground/3-floating-clouds" unique_id=649878756]
+texture_repeat = 2
+texture = ExtResource("3_6demr")
+centered = false
+region_enabled = true
+region_rect = Rect2(0, 0, 576, 208)
+
+[node name="2-water" type="ParallaxLayer" parent="ParallaxBackground" unique_id=523902937]
+motion_scale = Vector2(0.4, 0.3)
+motion_mirroring = Vector2(288, 0)
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="ParallaxBackground/2-water" unique_id=1467838580]
+texture_repeat = 2
+sprite_frames = SubResource("SpriteFrames_q1fvd")
+autoplay = "default"
+centered = false
+
+[node name="AnimatedSprite2D2" type="AnimatedSprite2D" parent="ParallaxBackground/2-water" unique_id=950359563]
+texture_repeat = 2
+position = Vector2(577, -1)
+sprite_frames = SubResource("SpriteFrames_q1fvd")
+autoplay = "default"
+centered = false
+
+[node name="Sprite2D" type="Sprite2D" parent="ParallaxBackground/2-water" unique_id=1877343504]
+texture = ExtResource("6_fbp53")
+centered = false
+offset = Vector2(0, 208)
+region_enabled = true
+region_rect = Rect2(0, 0, 576, 208)
+
+[node name="Camera2D" type="Camera2D" parent="." unique_id=1575756104]
+position = Vector2(152, 83)
+limit_left = 0
+limit_top = 0
+limit_smoothed = true
+script = ExtResource("7_tyhya")
+
+[node name="Controller" type="Node" parent="." unique_id=555567937]
+script = ExtResource("10_3sjdf")
+
+[node name="scene_transition" parent="." unique_id=853681277 instance=ExtResource("11_axcdg")]
+
+[connection signal="pressed" from="FirstScreen/CanvasLayer/Control/ButtonStart" to="Controller" method="_on_button_start_pressed"]
+[connection signal="pressed" from="FirstScreen/CanvasLayer/Control/ButtonOptions" to="Controller" method="_on_button_options_pressed"]

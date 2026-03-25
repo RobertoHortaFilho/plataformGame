@@ -7,6 +7,7 @@ const BONE = preload("uid://ch7w3702vhjq2")
 @onready var floor_collision: RayCast2D = $floorCollision
 @onready var player_detector: RayCast2D = $playerDetector
 @onready var bone_start_position: Node2D = $BoneStartPosition
+@onready var bone_path_detector: RayCast2D = $bonePathDetector
 
 enum enemy_state {
 	walk,
@@ -40,7 +41,7 @@ func walk_state(delta: float):
 	if front_collision.is_colliding() or not floor_collision.is_colliding():
 		direction *= -1
 		scale.x *= -1
-	if player_detector.is_colliding():
+	if player_detector.is_colliding() and !bone_path_detector.is_colliding():
 		go_to_attack_state()
 		return
 
